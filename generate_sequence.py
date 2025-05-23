@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 
 num_frames = 33
-no_bac_image_seq=np.load("C:\\Users\\Mehmet_Postdoc\\Desktop\\python_set_up_code\\EmiNet_image_generation_material\\data0413.npy")
+no_bac_image_seq=np.load("path_to_your_image_sequence.npy")  # Load your image sequence here
 
 tiles=view_as_windows(no_bac_image_seq, (33,128,128))
 
@@ -48,10 +48,14 @@ for z in range(number_of_error):
 
 
 comb_arr=np.transpose(combined_mask, (0,2, 3, 1))
-
+#images next to each other
 for i in range(32):
   print(i)
+  plt.subplot(1, 2, 1)
   plt.imshow(all_frames[i])
-  plt.show()
+  plt.subplot(1, 2, 2)
   plt.imshow(np.float32(comb_arr[i]))
+  plt.savefig(f"save_path\\input_output_{i}.png")
   plt.show()
+
+
